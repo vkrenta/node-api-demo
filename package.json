@@ -18,8 +18,12 @@
   },
   "homepage": "https://github.com/vkrenta/node-api-demo#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "esm": "^3.2.25",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.9.20",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
