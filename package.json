@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "cross-env ENV=DEV nodemon index",
+    "start": "cross-env ENV=PROD node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +28,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
