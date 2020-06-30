@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 const authRouter = Router();
 
-authRouter.post('/register', () => {});
+authRouter.post('/register', () => console.log('register'));
 authRouter.post('/login', () => {});
 authRouter.get('/logout', () => {});
 

@@ -3,7 +3,8 @@ import cookieParser from 'cookie-parser';
 import './config';
 import log from './helpers/log';
 import connectDB from './db';
-import useRoutes from './routes';
+import rootRouter from './routes';
+import { logReq, logRes } from './middlewares/log.middleware';
 
 const handler = (e) => log.error({ label: e.name, message: e.message });
 process.on('uncaughtException', handler);
@@ -14,8 +15,9 @@ app.get('/favicon.ico', (req, res, next) => next());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-useRoutes(app);
+app.use(logReq);
+app.use(logRes);
+app.use(rootRouter);
 
 const start = async () => {
   await connectDB();
