@@ -5,6 +5,7 @@ import log from './helpers/log';
 import connectDB from './db';
 import rootRouter from './routes';
 import { logReq, logRes } from './middlewares/log.middleware';
+import errorMiddleware from './middlewares/error.middleware';
 
 const handler = (e) => log.error({ label: e.name, message: e.message });
 process.on('uncaughtException', handler);
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.use(logReq);
 app.use(logRes);
 app.use(rootRouter);
+app.use(errorMiddleware);
 
 const start = async () => {
   await connectDB();

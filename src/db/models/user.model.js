@@ -1,6 +1,7 @@
-import { Schema, SchemaTypes, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
+import log from '../../helpers/log';
 
-const { String } = SchemaTypes;
+const { String } = Schema.Types;
 
 const schema = new Schema({
   login: {
@@ -16,11 +17,16 @@ const schema = new Schema({
   },
   role: {
     type: String,
-    enum: ['teacher', 'student'],
+    enum: ['teacher', 'student', 'admin'],
     required: true,
   },
 });
 
 const User = model('user', schema);
+
+User.watch().on('change', (changes) => {
+  const { operationType, fullDocument, documentKey, ns } = changes;
+  log.info({ ns, operationType, fullDocument, documentKey });
+});
 
 export default User;

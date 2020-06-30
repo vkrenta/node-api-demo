@@ -1,6 +1,6 @@
-import { Schema, SchemaTypes, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
-const { ObjectId } = SchemaTypes;
+const { ObjectId } = Schema.Types;
 
 const schema = new Schema({
   userId: {
@@ -15,5 +15,10 @@ const schema = new Schema({
 });
 
 const Teacher = model('teacher', schema);
+
+Teacher.watch().on('change', (changes) => {
+  const { operationType, fullDocument, documentKey, ns } = changes;
+  log.info({ ns, operationType, fullDocument, documentKey });
+});
 
 export default Teacher;

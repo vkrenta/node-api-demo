@@ -1,6 +1,6 @@
-import { Schema, SchemaTypes, model } from 'mongoose';
-
-const { ObjectId, String, Number } = SchemaTypes;
+import { Schema, model } from 'mongoose';
+import log from '../../helpers/log';
+const { ObjectId, String, Number } = Schema.Types;
 
 const schema = new Schema({
   name: String,
@@ -24,5 +24,8 @@ const schema = new Schema({
 });
 
 const Lection = model('lection', schema);
-
+Lection.watch().on('change', (changes) => {
+  const { operationType, fullDocument, documentKey, ns } = changes;
+  log.info({ ns, operationType, fullDocument, documentKey });
+});
 export default Lection;
