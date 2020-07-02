@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose';
-import log from '../../helpers/log';
 
 const { String } = Schema.Types;
 
@@ -23,10 +22,5 @@ const schema = new Schema({
 });
 
 const User = model('users', schema);
-
-User.watch().on('change', (changes) => {
-  const { operationType, fullDocument, documentKey, ns } = changes;
-  log.info({ ns, operationType, fullDocument, documentKey });
-});
 
 export default User;

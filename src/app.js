@@ -1,6 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import './config';
+import './db/models';
 import log from './helpers/log';
 import connectDB from './db';
 import rootRouter from './routes';
