@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import log from '../../helpers/log';
 
 const { ObjectId } = Schema.Types;
 
@@ -14,7 +15,7 @@ const schema = new Schema({
   },
 });
 
-const Teacher = model('teacher', schema);
+const Teacher = model('teachers', schema);
 
 Teacher.watch().on('change', (changes) => {
   const { operationType, fullDocument, documentKey, ns } = changes;

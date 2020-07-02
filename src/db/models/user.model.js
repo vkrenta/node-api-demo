@@ -22,7 +22,7 @@ const schema = new Schema({
   },
 });
 
-const User = model('user', schema);
+const User = model('users', schema);
 
 User.watch().on('change', (changes) => {
   const { operationType, fullDocument, documentKey, ns } = changes;

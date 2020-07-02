@@ -10,7 +10,7 @@ const schema = new Schema({
   },
 });
 
-const Group = model('group', schema);
+const Group = model('groups', schema);
 Group.watch().on('change', (changes) => {
   const { operationType, fullDocument, documentKey, ns } = changes;
   log.info({ ns, operationType, fullDocument, documentKey });

@@ -14,7 +14,7 @@ const schema = new Schema({
   },
 });
 
-const Student = model('student', schema);
+const Student = model('students', schema);
 Student.watch().on('change', (changes) => {
   const { operationType, fullDocument, documentKey, ns } = changes;
   log.info({ ns, operationType, fullDocument, documentKey });
