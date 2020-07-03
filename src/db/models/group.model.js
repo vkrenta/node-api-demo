@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 const { ObjectId, String } = Schema.Types;
 
 const schema = new Schema({
-  name: String,
+  name: { type: String, required: true, unique: true },
   departmentId: {
     required: true,
     type: ObjectId,

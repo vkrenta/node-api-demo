@@ -12,10 +12,6 @@ const createDepController = async (req, res, next) => {
       .status(201)
       .send({ message: `Department with id ${dep._id} has been created` });
   } catch (e) {
-    if (e.code && e.code === 11000)
-      return res
-        .status(400)
-        .send({ message: `Department with name ${name} already exists` });
     next(e);
   }
 };
