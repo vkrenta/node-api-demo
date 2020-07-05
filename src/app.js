@@ -8,7 +8,7 @@ import rootRouter from './routes';
 import { logReq, logRes } from './middlewares/log.middleware';
 import errorMiddleware from './middlewares/error.middleware';
 
-const handler = (e) => log.error({ label: e.name, message: e.message });
+const handler = (e) => log.error({ label: e.name, message: e.stack });
 process.on('uncaughtException', handler);
 process.on('unhandledRejection', handler);
 
@@ -16,7 +16,7 @@ const app = express();
 app.get('/favicon.ico', (req, res, next) => next());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(logReq);
 app.use(logRes);
 app.use(rootRouter);
