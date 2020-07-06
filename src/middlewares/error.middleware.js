@@ -1,6 +1,12 @@
 import log from '../helpers/log';
 
 const errorMiddleware = (err, req, res, next) => {
+  if (err.code === 666228) {
+    return res
+      .status(400)
+      .send({ message: `Missing required fields: ${err.nulled}` });
+  }
+
   if (err.code && err.code === 11000)
     return res.status(400).send({
       message: `Document with ${JSON.stringify(err.keyValue)} already exists`,
