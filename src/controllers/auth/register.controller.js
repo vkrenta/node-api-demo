@@ -4,20 +4,17 @@ import Teacher from '../../db/models/teacher.model';
 import Student from '../../db/models/student.model';
 import Department from '../../db/models/department.model';
 import Group from '../../db/models/group.model';
+import getRequiredFields from '../../helpers/getRequiredFields';
 
 const registerController = async (req, res, next) => {
   try {
-    const {
-      login,
-      firstName,
-      lastName,
-      role,
-      departmentId,
-      groupId,
-    } = req.body;
-    let { password } = req.body;
-    if (!(login && password && role))
-      return res.status(400).send({ message: 'Missing required fields' });
+    let { login, password, role } = getRequiredFields(
+      req,
+      'login',
+      'password',
+      'role'
+    );
+    const { firstName, lastName, departmentId, groupId } = req.body;
 
     const existingUser = await User.findOne({ login }).exec();
     if (existingUser)

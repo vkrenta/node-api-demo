@@ -15,7 +15,7 @@ const errorMiddleware = (err, req, res, next) => {
   if (err.kind && err.kind === 'ObjectId')
     return res.status(400).send({ message: 'Incorrect id' });
 
-  log.error(err.stack);
+  log.error(`[Error name] ${err.name}\n[Error code] ${err.code}\n${err.stack}`);
   res.status(500).send({ message: err.stack });
 };
 

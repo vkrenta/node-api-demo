@@ -2,7 +2,10 @@ import { Schema, model } from 'mongoose';
 const { ObjectId, String, Number } = Schema.Types;
 
 const schema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+  },
   teacherId: {
     type: ObjectId,
     required: true,

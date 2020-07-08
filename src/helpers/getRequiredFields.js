@@ -1,4 +1,4 @@
-export default function getRequiredFields(req, res, ...params) {
+export default function getRequiredFields(req, ...params) {
   const fields = {};
   const nulled = [];
   params.forEach((p) => {

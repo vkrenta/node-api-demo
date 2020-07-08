@@ -1,12 +1,14 @@
 import Group from '../../db/models/group.model';
 import Department from '../../db/models/department.model';
+import getRequiredFields from '../../helpers/getRequiredFields';
 
 const createGroupControler = async (req, res, next) => {
   try {
-    const { name, departmentId } = req.body;
-
-    if (!(name && departmentId))
-      return res.status(400).send({ message: 'missing required fields' });
+    const { name, departmentId } = getRequiredFields(
+      req,
+      'name',
+      'departmentId'
+    );
 
     const dep = await Department.findById(departmentId).exec();
 
